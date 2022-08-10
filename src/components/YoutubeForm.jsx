@@ -28,21 +28,21 @@ const YoutubeForm = () => {
                 <label htmlFor='name'>Name</label>
                 <Field
                     type='text'
-                    id='name'
+                    name='name'
                 />
                 <ErrorMessage name='name' />
 
                 <label htmlFor='email'>E-mail</label>
                 <Field
                     type='email'
-                    id='email'
+                    name='email'
                 />
                 <ErrorMessage name='email' />
 
                 <label htmlFor='channel'>Channel</label>
                 <Field
                     type='text'
-                    id='channel'
+                    name='channel'
                 />
                 <ErrorMessage name='channel' />
 

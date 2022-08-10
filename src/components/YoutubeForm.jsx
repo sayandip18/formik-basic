@@ -1,5 +1,5 @@
 import React from 'react'
-import { useFormik } from 'formik'
+import { ErrorMessage, Field, Formik, useFormik } from 'formik'
 import * as Yup from 'yup'
 
 const validationSchema = Yup.object({
@@ -17,51 +17,38 @@ const initialValues = {
 }
 
 const YoutubeForm = () => {
-    const formik = useFormik({
-        initialValues,
-        onSubmit,
-        validationSchema
-    })
-
     return (
-        <div>
+        <Formik
+        initialValues={initialValues}
+        onSubmit={onSubmit}
+        validationSchema={validationSchema}
+        >
+            {formik =>
             <form onSubmit={formik.handleSubmit}>
                 <label htmlFor='name'>Name</label>
-                <input
+                <Field
                     type='text'
                     id='name'
-                    name='name'
-                    onChange={formik.handleChange}
-                    value={formik.values.name}
-                    onBlur={formik.handleBlur}
                 />
-                {formik.touched.name && formik.errors.name ? <div className='alertMsg'>{formik.errors.name}</div> : null}
+                <ErrorMessage name='name' />
 
                 <label htmlFor='email'>E-mail</label>
-                <input
+                <Field
                     type='email'
                     id='email'
-                    name='email'
-                    onChange={formik.handleChange}
-                    value={formik.values.email}
-                    onBlur={formik.handleBlur}
                 />
-                {formik.touched.email && formik.errors.email ? <div className='alertMsg'>{formik.errors.email}</div> : null}
+                <ErrorMessage name='email' />
 
                 <label htmlFor='channel'>Channel</label>
-                <input
+                <Field
                     type='text'
                     id='channel'
-                    name='channel'
-                    onChange={formik.handleChange}
-                    value={formik.values.channel}
-                    onBlur={formik.handleBlur}
                 />
-                {formik.touched.channel && formik.errors.channel ? <div className='alertMsg'>{formik.errors.channel}</div> : null}
+                <ErrorMessage name='channel' />
 
                 <button type='submit'>Submit</button>
-            </form>
-        </div>
+            </form>}
+        </Formik>
     )
 }
 
